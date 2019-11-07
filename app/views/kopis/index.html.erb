@@ -1,27 +1,64 @@
-<%= link_to 'Origins', origins_path%>
-<%= link_to 'Kopis', kopis_path%>
-<%= link_to 'Customers', customers_path%>
-<%= link_to 'New Customer', new_customer_path %>
-<% if user_signed_in? %>
-  <%= link_to 'New Kopi', new_kopi_path %>
-  <%= link_to 'log out', destroy_user_session_url, method: :delete %>
-<% else %>
-  <%= link_to 'log in', new_user_session_url %>
-<% end %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><i class="fas fa-coffee"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<h1>Kopi</h1>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'Origin', origins_path, :class=>"nav-link"%>
+      </li>
+      <li class="nav-item active">
+        <%= link_to 'Kopi', kopis_path, :class=>"nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Customer', customers_path, :class=>"nav-link" %>
+      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to raw('<i class="fas fa-plus-circle mr-1"></i>Customer'), new_customer_path, :class=>"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to raw('<i class="fas fa-plus-circle mr-1"></i>Kopi'), new_kopi_path, :class=>"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to raw('<i class="fas fa-sign-out-alt mr-1"></i>Log Out'), destroy_user_session_url, method: :delete, :class=>"nav-link"%>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to raw('<i class="fas fa-sign-in-alt mr-1"></i>Log In'), new_user_session_url, :class=>"nav-link"%>
+        </li>
+      <% end %>
 
-<% @kopis.each do |k| %>
-  <p>
-  <%= k.name %> 
-  <%= k.roast %>
-  <%= k.origin.location %>
-  <%= k.origin.phone %>
-  <%= link_to 'view', kopi_path(k) %>
-  </p>
-<% end %>
+    </ul>
+  </div>
+</nav>
 
-
-
-
-
+<div class="container">
+  <div class="row">
+  <h1>Kopi</h1>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Kopi</th>
+      <th scope="col">Roast</th>
+      <th scope="col">Origin</th>
+      <th scope="col">Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @kopis.each_with_index do |k, i| %>
+      <tr>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= link_to k.name, kopi_path(k) %></td>
+        <td><%= k.roast %></td>
+        <td><%= k.origin.location %></td>
+        <td><%= k.origin.phone %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
