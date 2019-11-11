@@ -9,14 +9,16 @@
 <%= link_to 'log in', new_user_session_url %>
 <% end %>
 
-<h1>Kopi</h1>
-<img src="https://i.redd.it/9f94rq2bphhz.jpg" />
-<% @kopis.each do |k| %>
-<p>
-	<%= k.name %>
-	<%= k.roast %>
-	<%= k.origin.location %>
-	<%= k.origin.phone %>
-	<%= link_to 'view', kopi_path(k) %>
-</p>
-<% end %>
+<div class="container">
+	<h1>Kopi</h1>
+	<img src="https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg">
+	<% @kopis.each do |k| %>
+	<p>
+		<%= k.name %>
+		<%= k.roast %>
+		<%= k.origin.location %>
+		<%= k.origin.phone %>
+		<%= link_to 'view', kopi_path(k) %>
+	</p>
+	<% end %>
+</div>
