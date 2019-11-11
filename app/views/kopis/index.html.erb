@@ -3,28 +3,23 @@
 <%= link_to 'Customers', customers_path%>
 <%= link_to 'New Customer', new_customer_path %>
 <% if user_signed_in? %>
-  <%= link_to 'New Kopi', new_kopi_path %>
-  <%= link_to 'log out', destroy_user_session_url, method: :delete %>
+<%= link_to 'New Kopi', new_kopi_path %>
+<%= link_to 'log out', destroy_user_session_url, method: :delete %>
 <% else %>
-  <%= link_to 'log in', new_user_session_url %>
+<%= link_to 'log in', new_user_session_url %>
 <% end %>
 
 <div class="container">
-<div></div>
-  <h1>Kopi</h1>
-  <img src="https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg">
-  <% @kopis.each do |k| %>
-    <p>
-    <%= k.name %> 
-    <%= k.roast %>
-    <%= k.origin.location %>
-    <%= k.origin.phone %>
-    <%= link_to 'view', kopi_path(k) %>
-    </p>
-  <% end %>
+	<h1>Kopi</h1>
+	<img src="https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg">
+	<% @kopis.each do |k| %>
+	<p>
+		<%= k.name %>
+		<%= k.roast %>
+		<%= k.origin.location %>
+		<%= k.origin.phone %>
+		<%= link_to 'view', kopi_path(k) %>
+	</p>
+	<% end %>
 </div>
-
-
-
-
 
